@@ -1,35 +1,16 @@
 {
-  "name": "ims-lti",
+  "name": "ims-lti-hapijs",
   "version": "1.0.0",
-  "description": "Module for building an LTI Tool Provider and accept LTI launch requests",
-  "author": {
-    "name": "James Rundquist",
-    "email": "james@courseshark.com"
-  },
-  "contributors": [{
-    "name": "Owen Smith",
-    "email": "owen@omsmith.ca"
-  }, {
-    "name": "David Kosub",
-    "email": "dave@davidkosub.com"
-  }],
+  "description": "Forked(https://github.com/omsmith/ims-lti) Module for building an LTI Tool Provider and accept LTI launch requests for Hapi.js",
+  "author": "Joey Miller <joeymiller50@gmail.com>",
   "license": "MIT",
   "keywords": [
     "ims",
     "lti",
     "provider"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/omsmith/ims-lti.git"
-  },
-  "bugs": {
-    "url": "http://github.com/omsmith/ims-lti/issues"
-  },
   "main": "./lib/ims-lti",
-  "scripts": {
-    "prepublish": "make build"
-  },
+  "scripts": {},
   "dependencies": {
     "xml2js": "~0.4.0",
     "xmlbuilder": "~2.4.0",
@@ -44,5 +25,13 @@
     "mocha-lcov-reporter": "0.0.1",
     "mocha-multi": "~0.4.0",
     "coveralls": "~2.10.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/joeymiller/ims-lti.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joeymiller/ims-lti/issues"
+  },
+  "homepage": "https://github.com/joeymiller/ims-lti"
 }

@@ -45,9 +45,9 @@ class Provider
   #
   # Returns true/false if is valid LTI request
   _valid_parameters: (req) ->
-    correct_message_type = req.body.lti_message_type is 'basic-lti-launch-request'
-    correct_version      = require('./ims-lti').supported_versions.indexOf(req.body.lti_version) isnt -1
-    has_resource_link_id = req.body.resource_link_id?
+    correct_message_type = req.payload.lti_message_type is 'basic-lti-launch-request'
+    correct_version      = require('./ims-lti').supported_versions.indexOf(req.payload.lti_version) isnt -1
+    has_resource_link_id = req.payload.resource_link_id?
     correct_message_type and correct_version and has_resource_link_id
 
 
@@ -56,9 +56,9 @@ class Provider
   # Returns true/false if is valid OAuth signatue and nonce
   _valid_oauth: (req, callback) ->
     generated = @signer.build_signature req, @consumer_secret
-    valid_signature = generated is req.body.oauth_signature
+    valid_signature = generated is req.payload.oauth_signature
     return callback new errors.SignatureError('Invalid Signature'), false if not valid_signature
-    @nonceStore.isNew req.body.oauth_nonce, req.body.oauth_timestamp, (err, valid) ->
+    @nonceStore.isNew req.payload.oauth_nonce, req.payload.oauth_timestamp, (err, valid) ->
       if not valid
         callback new errors.NonceError('Expired nonce'), false
       else
@@ -70,7 +70,7 @@ class Provider
   #
   # Does not return anything
   parse_request: (req) =>
-    for key, val of req.body
+    for key, val of req.payload
       continue if key.match(/^oauth_/)
       @body[key] = val
 
